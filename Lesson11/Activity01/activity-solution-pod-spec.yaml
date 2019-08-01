@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-secrets-activity-pod
+spec:
+  containers:
+    - name: configmap-secrets-activity-container
+      image: k8s.gcr.io/busybox
+      command: [ "/bin/sh", "-c", "cat /etc/app-data/application-data.properties; cat /etc/secure-data/application-secure.properties;" ]
+      volumeMounts:
+      - name: config-volume
+        mountPath: /etc/app-data
+      - name: secret-volume
+        mountPath: /etc/secure-data 
+  volumes:
+    - name: config-volume
+      configMap:
+        name: my-app-data
+    - name: secret-volume
+      secret:
+        secretName: my-app-secret

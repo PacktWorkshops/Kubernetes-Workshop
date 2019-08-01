@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-test-pod
+spec:
+  containers:
+    - name: configmap-container
+      image: k8s.gcr.io/busybox
+      command: [ "/bin/sh", "-c", "ls /etc/appconfig/" ]
+      volumeMounts:
+      - name: config-volume
+        mountPath: /etc/appconfig
+  volumes:
+    - name: config-volume
+      configMap:
+        # Provide the name of the ConfigMap containing the files you want
+        # to add to the container
+        name: full-file-map
+  restartPolicy: Never

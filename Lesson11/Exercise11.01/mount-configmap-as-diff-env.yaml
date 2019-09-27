@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-multi-env-pod
+spec:
+  containers:
+    - name: configmap-container
+      image: k8s.gcr.io/busybox
+      command: [ "/bin/sh", "-c", "echo $(partner-server-location)" ]
+      env:
+        - name: partner-server-location
+          valueFrom:
+            configMapKeyRef:
+              name: singlevalue-map
+              key: partner-url

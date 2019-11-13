@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: validating-pod-example
+  # labels:
+  #   teamName: kubeteam
+spec:
+  containers:
+    - name: validating-pod-example-container
+      image: k8s.gcr.io/busybox
+      command: [ "/bin/sh", "-c", "ls -lrt ; echo 'Pod created'" ]

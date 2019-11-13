@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: port-exposed-pod
+spec:
+  containers:
+    - name: container-with-exposed-port
+      image: nginx
+      ports:
+        - containerPort: 80

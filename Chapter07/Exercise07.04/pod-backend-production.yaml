@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: backend-production
+  labels:
+    environment: production
+    role: backend
+spec:
+  containers:
+  - name: application-container
+    image: nginx

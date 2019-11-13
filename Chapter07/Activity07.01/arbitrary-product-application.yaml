@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: arbitrary-product-application
+  namespace: metadata-activity
+  labels:
+    environment: production
+    team: product-development
+    critical: false
+  annotations:
+      team-link: “https://jira-link/team-link-1”
+spec:
+  containers:
+  - name: application-container
+    image: nginx

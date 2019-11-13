@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: frontend-staging
+  labels:
+    environment: staging
+    role: frontend
+spec:
+  containers:
+  - name: application-container
+    image: nginx

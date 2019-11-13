@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: infra-libraries-application-staging
+  namespace: metadata-activity
+  labels:
+    environment: staging
+    team: infra-libraries
+  annotations:
+      team-link: “https://jira-link/team-link-2”
+spec:
+  containers:
+  - name: application-container
+    image: nginx

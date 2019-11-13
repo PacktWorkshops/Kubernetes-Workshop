@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-with-annotations
+  annotations:
+    commit-SHA: d6s9shb82365yg4ygd782889us28377gf6
+    JIRA-issue: "https://your-jira-link.com/issue/ABC-1234"
+    timestamp: "123456789"
+    owner: "https://internal-link.to.website/username"
+spec:
+  containers:
+  - name: application-container
+    image: nginx

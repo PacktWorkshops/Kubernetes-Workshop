@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-with-pod-anti-affinity-fe
+  labels:
+     application-name: backing-app
+spec:
+  affinity:
+   podAntiAffinity: 
+     requiredDuringSchedulingIgnoredDuringExecution: 
+     - labelSelector:
+         matchExpressions:
+         - key: application-name
+           operator: NotIn 
+           values:
+           - banking-app
+       topologyKey: kubernetes.io/hostname   
+  containers:
+    - name: pod-with-node-pod-anti-container-fe
+      image: k8s.gcr.io/busybox
+      command: [ "/bin/sh", "-c", "while :; do echo 'this is frontend pod'; sleep 5 ; done" ]

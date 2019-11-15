@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gui-pod
+  labels:
+    app: gui-pod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gui-pod
+  template:
+    metadata:
+      labels:
+        app: gui-pod
+    spec:
+      affinity:
+        podAffinity: 
+          requiredDuringSchedulingIgnoredDuringExecution: 
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In 
+                values:
+                - api-pod
+            topologyKey: kubernetes.io/hostname     
+
+      containers:
+      - name: gui-pod
+        image: k8s.gcr.io/busybox
+        imagePullPolicy: Always
+        command: [ "/bin/sh", "-c", "while :; do echo 'this is GUI pod'; sleep 5 ; done" ]
+        resources:
+          limits:
+            cpu: "0.1"
+            memory: "100Mi"
+          requests:
+            cpu: "0.1"
+            memory: "100Mi"
+

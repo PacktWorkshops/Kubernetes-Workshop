@@ -1,0 +1,8 @@
+apiVersion: "controllers.kube.book.au/v1"
+kind: PodLifecycleConfig
+metadata:
+  name: demo-pod-lifecycle
+  # namespace: "crddemo"
+spec:
+  namespaceName: crddemo
+  podLiveForThisMinutes: 1

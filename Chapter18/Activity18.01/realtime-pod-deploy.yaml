@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: realtime-pod
+  labels:
+    app: realtime-pod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: realtime-pod
+  template:
+    metadata:
+      labels:
+        app: realtime-pod
+    spec:
+      priorityClassName: realtime-pod-priority
+      containers:
+      - name: realtime-pod
+        image: k8s.gcr.io/busybox
+        imagePullPolicy: Always
+        command: [ "/bin/sh", "-c", "while :; do echo 'this is REALTIME pod'; sleep 1 ; done" ]
+        resources:
+          limits:
+            cpu: "0.1"
+            memory: "100Mi"
+          requests:
+            cpu: "0.1"
+            memory: "100Mi"

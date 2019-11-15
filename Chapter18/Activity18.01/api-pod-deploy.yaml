@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-pod
+  labels:
+    app: api-pod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-pod
+  template:
+    metadata:
+      labels:
+        app: api-pod
+    spec:
+      priorityClassName: api-pod-priority
+      containers:
+      - name: api-pod
+        image: k8s.gcr.io/busybox
+        imagePullPolicy: Always
+        command: [ "/bin/sh", "-c", "while :; do echo 'this is API pod'; sleep 3 ; done" ]
+        resources:
+          limits:
+            cpu: "0.1"
+            memory: "100Mi"
+          requests:
+            cpu: "0.1"
+            memory: "100Mi"
+

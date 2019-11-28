@@ -6,9 +6,9 @@ metadata:
   labels:
     environment: production
     team: infra-libraries
-    critical: true
+    critical: "true"
   annotations:
-      team-link: “https://jira-link/team-link-2”
+      team-link: â€œhttps://jira-link/team-link-2â€
 spec:
   containers:
   - name: application-container

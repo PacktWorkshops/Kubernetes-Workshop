@@ -6,9 +6,9 @@ metadata:
   labels:
     environment: production
     team: product-development
-    critical: false
+    critical: "false"
   annotations:
-      team-link: “https://jira-link/team-link-1”
+      team-link: â€œhttps://jira-link/team-link-1â€
 spec:
   containers:
   - name: application-container

@@ -21,7 +21,7 @@ ENV ROOT_PACKAGE github.com/example-inc/pod-normaliser-controller
 ENV CUSTOM_RESOURCE_NAME podlifecycleconfig
 ENV CUSTOM_RESOURCE_VERSION v1
 
-RUN dep ensure -v
+RUN dep ensure
 RUN cd /root/go/src/k8s.io/code-generator && ./generate-groups.sh all "$ROOT_PACKAGE/pkg/client" "$ROOT_PACKAGE/pkg/apis" "$CUSTOM_RESOURCE_NAME:$CUSTOM_RESOURCE_VERSION"
 #
 #

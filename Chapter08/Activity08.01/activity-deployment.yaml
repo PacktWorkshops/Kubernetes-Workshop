@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: activity-deployment
+  namespace: controllers-activity
+  labels:
+    app: nginx
+spec:
+  replicas: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: "50%"
+      maxSurge: "50%"
+  selector:
+    matchLabels:
+      chapter: controllers
+      activity: first
+  template:
+    metadata:
+      labels:
+        chapter: controllers
+        activity: first
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx

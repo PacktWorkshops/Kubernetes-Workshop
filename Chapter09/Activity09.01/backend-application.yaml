@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-application
+  namespace: services-activity
+  labels:
+    application: backend
+spec:
+  replicas: 4
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      application: backend
+  template:
+    metadata:
+      labels:
+        application: backend
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx

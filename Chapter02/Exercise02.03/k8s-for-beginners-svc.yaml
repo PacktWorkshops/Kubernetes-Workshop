@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: k8s-for-beginners
+spec:
+  selector:
+    tier: frontend
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 8080
+

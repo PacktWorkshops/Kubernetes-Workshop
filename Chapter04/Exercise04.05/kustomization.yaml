@@ -1,5 +1,0 @@
-commonLabels:
-  app: new_overlay_label
-resources:
-- deployment.yaml
-- service.yaml

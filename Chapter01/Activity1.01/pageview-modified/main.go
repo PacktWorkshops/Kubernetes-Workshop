@@ -28,5 +28,5 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Fprintf(w, "Hello, you're the vistor #%v.\n", pageView)
+	fmt.Fprintf(w, "Hello, you're vistor #%v.\n", pageView)
 }

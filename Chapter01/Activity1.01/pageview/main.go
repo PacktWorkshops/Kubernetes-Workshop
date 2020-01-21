@@ -16,5 +16,5 @@ func main() {
 func handler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Ping from %s", r.RemoteAddr)
 	pageView++
-	fmt.Fprintf(w, "Hello, you're the vistor #%d !", pageView)
+	fmt.Fprintf(w, "Hello, you're vistor #%d !", pageView)
 }

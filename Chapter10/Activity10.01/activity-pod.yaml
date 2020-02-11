@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: activity-pod
+  namespace: volumes-activity
+spec:
+  containers:
+  - image: ubuntu
+    name: ubuntu-1
+    command: ['/bin/bash', '-ec', 'echo "Data written by container-1" > /data/application/data.txt; sleep 3600']
+    volumeMounts:
+    - mountPath: /data/application
+      name: pvc-volume
+  - image: ubuntu
+    name: ubuntu-2
+    command: ['/bin/bash', '-ec', 'sleep 30; cat /data/application/data.txt; sleep 3600']
+    volumeMounts:
+    - mountPath: /data/application
+      name: pvc-volume
+  volumes:
+  - name: pvc-volume
+    persistentVolumeClaim:
+      claimName: activity-local-claim

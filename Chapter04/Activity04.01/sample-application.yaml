@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-back
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-back
+  template:
+    metadata:
+      labels:
+        app: redis-back
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: redis-back
+        image: redis
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        ports:
+        - containerPort: 6379
+          name: redis
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-back
+spec:
+  ports:
+  - port: 6379
+  selector:
+    app: redis-back
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: melonvote-front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: melonvote-front
+  template:
+    metadata:
+      labels:
+        app: melonvote-front
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: melonvote-front
+        image: microsoft/azure-vote-front:v1
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
+        ports:
+        - containerPort: 80
+        env:
+        - name: REDIS
+          value: "redis-back"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: melonvote-front
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: melonvote-front

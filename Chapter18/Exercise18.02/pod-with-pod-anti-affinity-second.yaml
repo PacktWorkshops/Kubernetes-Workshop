@@ -11,7 +11,7 @@ spec:
      - labelSelector:
          matchExpressions:
          - key: application-name
-           operator: NotIn 
+           operator: In 
            values:
            - banking-app
        topologyKey: kubernetes.io/hostname   

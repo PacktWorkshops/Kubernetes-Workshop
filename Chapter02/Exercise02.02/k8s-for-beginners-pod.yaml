@@ -5,5 +5,4 @@ metadata:
 spec:
   containers:
   - name: k8s-for-beginners
-    image: hweicdl/k8s-for-beginners:v0.0.1
-
+    image: packtworkshops/the-kubernetes-workshop:k8s-for-beginners

@@ -7,8 +7,7 @@ spec:
   restartPolicy: OnFailure
   containers:
     - name: custom-application-container
-      image: custom_application_image:latest
-      imagePullPolicy: Never
+      image: packtworkshops/the-kubernetes-workshop:custom-application-for-pods-chapter
       readinessProbe:
         exec:
           command:

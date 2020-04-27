@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: kubernetes-test-ha-application-without-redis
-          image: quay.io/zparnold/packt-kubernetes-demo-app:without_redis_v1
+          image: packtworkshops/the-kubernetes-workshop:demo-app-without-redis
           ports:
             - containerPort: 8080
 ---

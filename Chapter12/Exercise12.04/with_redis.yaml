@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: kubernetes-test-ha-application-with-redis
-          image: quay.io/zparnold/packt-kubernetes-demo-app:with_redis_v1
+          image: packtworkshops/the-kubernetes-workshop:demo-app-with-redis
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

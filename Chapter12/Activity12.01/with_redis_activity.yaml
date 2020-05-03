@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubernetes-test-ha-application-with-redis-deployment
+  labels:
+    app: kubernetes-test-ha-application-with-redis
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kubernetes-test-ha-application-with-redis
+  template:
+    metadata:
+      labels:
+        app: kubernetes-test-ha-application-with-redis
+    spec:
+      containers:
+        - name: kubernetes-test-ha-application-with-redis
+          image: packtworkshops/the-kubernetes-workshop:demo-app-with-redis
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: REDIS_SVC_ADDR
+              value: "use-your-value"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubernetes-test-ha-application-with-redis
+  labels:
+    app: kubernetes-test-ha-application-with-redis
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: kubernetes-test-ha-application-with-redis
+
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: redis
+  labels:
+    app: redis
+spec:
+  selector:
+    matchLabels:
+      app: redis
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+        - name: master
+          image: redis:3
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          ports:
+            - containerPort: 6379
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+  labels:
+    app: redis
+spec:
+  ports:
+    - port: 6379
+      targetPort: 6379
+  selector:
+    app: redis

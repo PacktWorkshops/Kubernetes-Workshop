@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: server
-        image: quay.io/masood_faisal/webhooks:0.0.1
+        image: packtworkshops/the-kubernetes-workshop:mutating-webhook
         imagePullPolicy: Always
         ports:
         - containerPort: 8443

@@ -6,8 +6,6 @@ metadata:
     app: nginx
 spec:
   replicas: 3
-  strategy:
-    type: Recreate
   selector:
     matchLabels:
       app: nginx

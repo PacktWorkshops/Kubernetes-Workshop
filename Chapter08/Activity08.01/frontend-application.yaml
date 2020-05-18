@@ -18,8 +18,8 @@ spec:
         application: frontend
     spec:
       containers:
-      - name: nginx-container
-        image: nginx
+      - name: apache-container
+        image: httpd:2.4
         env:
         - name: BACKEND_SERVICE_IP
           value: "10.99.220.18"

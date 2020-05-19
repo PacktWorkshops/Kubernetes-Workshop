@@ -4,14 +4,20 @@ metadata:
   name: psp-example
   namespace: default
 spec:
-  privileged: true
+  privileged: false
   seLinux:
     rule: RunAsAny
   supplementalGroups:
-    rule: RunAsAny
+    rule: MustRunAs
+    ranges:
+      - min: 1
+        max: 2500
   runAsUser:
-    rule: RunAsAny
+    rule: MustRunAsNonRoot
   fsGroup:
-    rule: RunAsAny
+    rule: MustRunAs
+    ranges:
+      - min: 655
+        max: 655
   volumes:
     - '*'

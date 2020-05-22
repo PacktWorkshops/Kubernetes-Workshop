@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webhook-server
+  labels:
+    app: webhook-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webhook-server
+  template:
+    metadata:
+      labels:
+        app: webhook-server
+    spec:
+      containers:
+      - name: server
+        image: packtworkshops/the-kubernetes-workshop:webhook
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8443
+          name: webhook-api
+        volumeMounts:
+        - name: webhook-tls-certs
+          mountPath: /etc/secrets/tls
+          readOnly: true
+      volumes:
+      - name: webhook-tls-certs
+        secret:
+          secretName: webhook-server-tls

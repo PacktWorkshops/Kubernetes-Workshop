@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: server
-        image: packtworkshops/the-kubernetes-workshop:mutating-webhook
+        image: packtworkshops/the-kubernetes-workshop:webhook
         imagePullPolicy: Always
         ports:
         - containerPort: 8443

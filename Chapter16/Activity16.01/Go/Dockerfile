@@ -1,7 +1,7 @@
 FROM golang:alpine as builder
 
 LABEL version="1.0" \
-      maintainer="fmasood@redhat.com"
+      maintainer="name@example.com"
 
 RUN mkdir /go/src/app && apk update && apk add --no-cache git && go get -u github.com/golang/dep/cmd/dep
 COPY ./*.go ./Gopkg.toml /go/src/app/
@@ -17,6 +17,3 @@ COPY --from=builder /go/src/app/main /app/
 WORKDIR /app
 USER appuser
 CMD ["./main"]
-
-
-

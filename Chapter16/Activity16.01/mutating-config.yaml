@@ -9,7 +9,7 @@ webhooks:
         name: webhook-server
         namespace: webhooks
         path: "/mutate"
-      caBundle: "${CA_BASE64_PEM}"
+      caBundle: "CA_BASE64_PEM"    #Retain the quotes when you copy the caBundle here. Please read the note below on how to add specific values here.
     rules:
       - operations: [ "CREATE" ]
         apiGroups: [""]

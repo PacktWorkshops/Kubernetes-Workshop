@@ -1,0 +1,4 @@
+deployment:
+  replicas: 3
+redis:
+  version: 3

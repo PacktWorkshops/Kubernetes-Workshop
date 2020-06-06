@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: master
-          image: redis:{{ .Values.redis.version }}
+          image: redis:3
           resources:
             requests:
               cpu: 100m

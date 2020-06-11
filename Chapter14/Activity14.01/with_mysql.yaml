@@ -1,0 +1,108 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubernetes-test-ha-application-with-mysql-deployment
+  labels:
+    app: kubernetes-test-ha-application-with-mysql
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kubernetes-test-ha-application-with-mysql
+  template:
+    metadata:
+      labels:
+        app: kubernetes-test-ha-application-with-mysql
+    spec:
+      containers:
+        - name: kubernetes-test-ha-application-with-mysql
+          image: quay.io/zparnold/packt-kubernetes-demo-app:with_mysql_v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: CONN_STRING
+              valueFrom:
+                secretKeyRef:
+                  key: CONN_STRING
+                  name: mysql-secret-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubernetes-test-ha-application-with-mysql
+  labels:
+    app: kubernetes-test-ha-application-with-mysql
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: kubernetes-test-ha-application-with-mysql
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  serviceName: mysql
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:5.7
+          env:
+            - name: MYSQL_DATABASE
+              value: db1
+            - name: MYSQL_ROOT_PASSWORD
+              value: root
+          ports:
+            - name: mysql
+              containerPort: 3306
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/mysql
+              subPath: mysql
+          resources:
+            requests:
+              cpu: 500m
+              memory: 1Gi
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 10Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  namespace: default
+  labels:
+    app: mysql
+spec:
+  ports:
+    - port: 3306
+      targetPort: 3306
+  selector:
+    app: mysql
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-secret-config
+  namespace: default
+type: Opaque
+data:
+  CONN_STRING: cm9vdDpyb290QHRjcChteXNxbC5kZWZhdWx0OjMzMDYpL2RiMQ==

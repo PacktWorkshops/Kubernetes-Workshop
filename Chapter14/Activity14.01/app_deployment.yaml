@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubernetes-test-ha-application-with-mysql-deployment
+  labels:
+    app: kubernetes-test-ha-application-with-mysql
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: kubernetes-test-ha-application-with-mysql
+  template:
+    metadata:
+      labels:
+        app: kubernetes-test-ha-application-with-mysql
+    spec:
+      containers:
+        - name: kubernetes-test-ha-application-with-mysql
+          image: quay.io/zparnold/packt-kubernetes-demo-app:with_mysql_v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: CONN_STRING
+              valueFrom:
+                secretKeyRef:
+                  key: CONN_STRING
+                  name: mysql-secret-config

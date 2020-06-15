@@ -463,7 +463,7 @@ spec:
     spec:
       containers:
         - name: kubernetes-test-ha-application-with-autoscaler
-          image: quay.io/zparnold/packt-kubernetes-demo-app:with_autoscaler_v4
+          image: packtworkshops/the-kubernetes-workshop:demo-app-with-autoscaler
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

@@ -3,6 +3,7 @@ kind: Pod
 metadata:
   name: pod-local-pvc
 spec:
+  restartPolicy: Never
   containers:
   - image: ubuntu
     name: ubuntu-container

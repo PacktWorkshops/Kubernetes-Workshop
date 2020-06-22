@@ -22,10 +22,8 @@ const (
 
 func main() {
 	fmt.Println("Starting MySQL Connection")
-	db, err := sql.Open("mysql", os.Getenv("WRITE_CONN_STRING"))
-	db2, err := sql.Open("mysql", os.Getenv("READ_CONN_STRING"))
+	db, err := sql.Open("mysql", os.Getenv("CONN_STRING"))
 	defer db.Close()
-	defer db2.Close()
 	if err != nil {
 		panic(err)
 	}
@@ -39,8 +37,8 @@ func main() {
 	}
 	fmt.Println("Starting HTTP server")
 	http.HandleFunc("/get-number", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println(FibonacciLoop(100000))
 		if r.Method == "GET" {
+			FibonacciLoop(10000000)
 			tx, err := db.Begin()
 			if err != nil {
 				panic(err)
@@ -54,7 +52,7 @@ func main() {
 			if err != nil {
 				fmt.Println(err)
 			}
-			row := db2.QueryRow(t2, 1)
+			row := db.QueryRow(t2, 1)
 			switch err := row.Scan(&num); err {
 			case sql.ErrNoRows:
 				fmt.Println("No rows were returned!")

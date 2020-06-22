@@ -1,23 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kubernetes-test-ha-application-with-mysql-deployment
+  name: kubernetes-test-ha-application-with-autoscaler-deployment
   labels:
-    app: kubernetes-test-ha-application-with-mysql
+    app: kubernetes-test-ha-application-with-autoscaler
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: kubernetes-test-ha-application-with-mysql
+      app: kubernetes-test-ha-application-with-autoscaler
   template:
     metadata:
       labels:
-        app: kubernetes-test-ha-application-with-mysql
+        app: kubernetes-test-ha-application-with-autoscaler
     spec:
       containers:
-        - name: kubernetes-test-ha-application-with-mysql
+        - name: kubernetes-test-ha-application-with-autoscaler
           image: quay.io/zparnold/packt-kubernetes-demo-app:with_autoscaler_v6
           imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: 200m
+            requests:
+              cpu: 200m
           ports:
             - containerPort: 8080
           env:
@@ -30,16 +35,16 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: kubernetes-test-ha-application-with-mysql
+  name: kubernetes-test-ha-application-with-autoscaler-service
   labels:
-    app: kubernetes-test-ha-application-with-mysql
+    app: kubernetes-test-ha-application-with-autoscaler
 spec:
   ports:
     - port: 80
       protocol: TCP
       targetPort: 8080
   selector:
-    app: kubernetes-test-ha-application-with-mysql
+    app: kubernetes-test-ha-application-with-autoscaler
 ---
 apiVersion: apps/v1
 kind: StatefulSet

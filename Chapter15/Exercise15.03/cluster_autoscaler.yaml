@@ -5,8 +5,8 @@ metadata:
   namespace: kube-system
 type: Opaque
 data:
-  aws_access_key_id: YOUR_AWS_ACCESS_KEY_ID
-  aws_secret_access_key: YOUR_AWS_SECRET_ACCESS_KEY
+  aws_access_key_id: QUtJQTVZUVVIUUFQVUMyRFY2NkY=
+  aws_secret_access_key: dmpJckF2OXlueFR4QndZdWIvdGd2SFB0b2cwYjMrcDY4cjZSazk2cw==
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -146,9 +146,18 @@ spec:
         prometheus.io/port: '8085'
     spec:
       serviceAccountName: cluster-autoscaler
+      volumes:
+        - name: ssl-certs
+          hostPath:
+            path: "/etc/ssl/certs/ca-bundle.crt"
       containers:
-        - image: asia.gcr.io/k8s-artifacts-prod/autoscaling/cluster-autoscaler:v1.18.1
+        - image: k8s.gcr.io/cluster-autoscaler:v1.14.7
           name: cluster-autoscaler
+          volumeMounts:
+            - name: ssl-certs
+              mountPath: /etc/ssl/certs/ca-certificates.crt
+              readOnly: true
+          imagePullPolicy: "Always"
           resources:
             limits:
               cpu: 100m
@@ -162,12 +171,8 @@ spec:
             - --stderrthreshold=info
             - --cloud-provider=aws
             - --skip-nodes-with-local-storage=false
-            - --nodes=2:4:terraform-eks-demo
-          volumeMounts:
-            - name: ssl-certs
-              mountPath: /etc/ssl/certs/ca-certificates.crt
-              readOnly: true
-          imagePullPolicy: "Always"
+            - --expander=least-waste
+            - --node-group-auto-discovery=asg:tag=kubernetes.io/cluster/terraform-eks-demo
           env:
           - name: AWS_ACCESS_KEY_ID
             valueFrom:
@@ -180,8 +185,4 @@ spec:
                 name: aws-secret
                 key: aws_secret_access_key
           - name: AWS_REGION
-            value: YOUR_AWS_REGION
-      volumes:
-        - name: ssl-certs
-          hostPath:
-            path: "/etc/ssl/certs/ca-bundle.crt"
+            value: us-west-2

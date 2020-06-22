@@ -106,3 +106,16 @@ metadata:
 type: Opaque
 data:
   CONN_STRING: cm9vdDpyb290QHRjcChteXNxbC5kZWZhdWx0OjMzMDYpL2RiMQ==
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: counter-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kubernetes-test-ha-application-with-autoscaler-deployment
+  minReplicas: 2
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 10

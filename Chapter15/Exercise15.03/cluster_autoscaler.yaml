@@ -5,8 +5,8 @@ metadata:
   namespace: kube-system
 type: Opaque
 data:
-  aws_access_key_id: QUtJQTVZUVVIUUFQVUMyRFY2NkY=
-  aws_secret_access_key: dmpJckF2OXlueFR4QndZdWIvdGd2SFB0b2cwYjMrcDY4cjZSazk2cw==
+  aws_access_key_id: YOUR_AWS_ACCESS_KEY_ID
+  aws_secret_access_key: YOUR_AWS_SECRET_ACCESS_KEY
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -185,4 +185,4 @@ spec:
                 name: aws-secret
                 key: aws_secret_access_key
           - name: AWS_REGION
-            value: us-west-2
+            value: <YOUR_AWS_REGION>

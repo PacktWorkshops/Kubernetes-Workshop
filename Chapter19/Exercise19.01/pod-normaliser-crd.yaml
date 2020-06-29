@@ -10,6 +10,7 @@ spec:
     kind: PodLifecycleConfig
     plural: podlifecycleconfigs
     singular: podlifecycleconfig
+  #1.15 preserveUnknownFields: false
   validation:
     openAPIV3Schema:
       type: object

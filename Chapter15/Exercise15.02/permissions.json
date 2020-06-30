@@ -8,7 +8,10 @@
                 "autoscaling:DescribeAutoScalingInstances",
                 "autoscaling:DescribeLaunchConfigurations",
                 "autoscaling:SetDesiredCapacity",
-                "autoscaling:TerminateInstanceInAutoScalingGroup"
+                "autoscaling:TerminateInstanceInAutoScalingGroup",
+                "autoscaling:DescribeLaunchConfigurations",
+                "ec2:DescribeLaunchTemplateVersions",
+                "autoscaling:DescribeTags"
             ],
             "Resource": "*"
         }

@@ -37,17 +37,17 @@ import (
 
 func main(){
 
-	// creates the kubernetes client configuration
+	// create the kubernetes client configuration
 	config, err := clientcmd.BuildConfigFromFlags("", "")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// creates the kubernetes client
+	// create the kubernetes client
 	podlifecyelconfgiclient, err := clientset.NewForConfig(config)
 
 
-	// creates the shared informer factory and use the client to connect to kubernetes
+	// create the shared informer factory and use the client to connect to kubernetes
 	podlifecycleconfigfactory := informers.NewSharedInformerFactoryWithOptions(podlifecyelconfgiclient, Second*30,
 										informers.WithNamespace(os.Getenv(NAMESPACE_TO_WATCH)))
 
@@ -74,17 +74,17 @@ func main(){
 				x := obj.(*v1.PodLifecycleConfig)
 				log.Printf("The CRD is for namespace %s with pod active time as %v", x.Spec.NamespaceName, x.Spec.PodLiveForMinutes)
 
-				// creates a new go channel. this channel would be used to stop this go routine if the CR is deleted
+				// create a new go channel. this channel would be used to stop this go routine if the CR is deleted
 				signal := make(chan struct{}, 1)
 
 				//store the channel in a local map
 				m[x.Spec.NamespaceName] = signal
 
-				// starts the subroutine to check and kill the pods for this namespace
+				// start the subroutine to check and kill the pods for this namespace
 				go checkAndRemovePodsPeriodically(signal, podclientset, x)
 			},
 
-			//define what to do in case if a  custom resource is removed
+			//define what to do in case a custom resource is removed
 			DeleteFunc: func(obj interface{}) {
 				log.Printf("A Custom Resource has been Deleted\n")
 				x := obj.(*v1.PodLifecycleConfig)
@@ -93,7 +93,7 @@ func main(){
 				// since this is a delete event, fetch the signal stored in the local map
 				signal := m[x.Spec.NamespaceName]
 
-				// close the signal so the go routine that was periodically checking the pod life allows time can be stopped
+				// close the signal so the go routine that was periodically checking the pod life allowed time can be stopped
 				close(signal)
 			},
 		},

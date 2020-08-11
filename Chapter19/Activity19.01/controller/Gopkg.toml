@@ -36,9 +36,25 @@
   name = "k8s.io/client-go"
   version = "kubernetes-1.14.0"
 
-[[constraint]]
+[[override]]
   name = "k8s.io/code-generator"
   version = "kubernetes-1.14.0"
+
+[[override]]
+  name = "k8s.io/klog"
+  version = "v0.4.0"
+
+[[override]]
+  name = "k8s.io/utils"
+  revision = "581e00157fb1a0435d4fac54a52d1ca1e481d60e"  
+
+[[override]]
+  name = "sigs.k8s.io/yaml"
+  version = "v1.1.0"  
+
+
+
+
 
 [prune]
   go-tests = true

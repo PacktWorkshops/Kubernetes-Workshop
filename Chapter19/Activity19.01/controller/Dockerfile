@@ -1,4 +1,5 @@
-FROM registry.fedoraproject.org/fedora:32 as builder
+# FROM registry.fedoraproject.org/fedora:32 as builder
+FROM fedora:32 as builder
 
 LABEL version="1.0" \
       maintainer="fmasood@redhat.com"
@@ -29,7 +30,8 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
 #
 
 
-FROM registry.fedoraproject.org/fedora-minimal:32
+#FROM registry.fedoraproject.org/fedora-minimal:32
+FROM fedora:32
 RUN groupadd appgroup && useradd appuser -G appgroup
 COPY --from=builder /root/go/src/github.com/example-inc/pod-normaliser-controller/main /app/
 WORKDIR /app

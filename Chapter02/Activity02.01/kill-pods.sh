@@ -12,7 +12,7 @@ while true; do
         if [[ -z $running_pod_kept ]]; then
             running_pod_kept=yes
             echo "Keeping Pod $pod_name running"
-        # Delet all other running Pods.
+        # Delete all other running Pods.
         else
             echo "Killing Pod $pod_name"
             kubectl delete pod $pod_name 

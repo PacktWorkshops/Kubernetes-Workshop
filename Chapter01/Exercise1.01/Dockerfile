@@ -1,5 +1,5 @@
 FROM alpine:3.10
 
-COPY main /
+COPY k8s-for-beginners /
 
-CMD ["/main"]
+CMD ["/k8s-for-beginners"]

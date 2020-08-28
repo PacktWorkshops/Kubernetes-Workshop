@@ -8,7 +8,7 @@ metadata:
     team: infra-libraries
     critical: "true"
   annotations:
-      team-link: “https://jira-link/team-link-2”
+      team-link: "https://jira-link/team-link-2"
 spec:
   containers:
   - name: application-container

@@ -8,7 +8,7 @@ metadata:
     team: product-development
     critical: "false"
   annotations:
-      team-link: “https://jira-link/team-link-1”
+      team-link: "https://jira-link/team-link-1"
 spec:
   containers:
   - name: application-container

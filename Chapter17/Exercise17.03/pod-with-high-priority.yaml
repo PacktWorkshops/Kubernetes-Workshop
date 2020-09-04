@@ -18,4 +18,3 @@ spec:
         image: k8s.gcr.io/busybox
         command: [ "/bin/sh", "-c", "while :; do echo 'this is backend pod'; sleep 5 ; done" ]
       priorityClassName: highest-priority
-

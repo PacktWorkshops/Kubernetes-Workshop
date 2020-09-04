@@ -16,7 +16,7 @@ spec:
              operator: In 
              values:
              - banking-app
-         topologyKey: kubernetes.io/hostname   
+         topologyKey: kubernetes.io/hostname
   containers:
     - name: pod-with-node-pod-container-fe
       image: k8s.gcr.io/busybox

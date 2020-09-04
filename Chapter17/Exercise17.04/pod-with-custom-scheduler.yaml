@@ -7,4 +7,4 @@ spec:
     - name: mutating-pod-example-container
       image: k8s.gcr.io/busybox
       command: [ "/bin/sh", "-c", "while :; do echo '.'; sleep 5 ; done" ]
-  schedulerName: "custom-scheduler"    
+  schedulerName: "custom-scheduler"

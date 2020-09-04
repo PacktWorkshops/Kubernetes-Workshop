@@ -54,7 +54,7 @@ func MutateCustomAnnotation(admissionRequest *v1beta1.AdmissionRequest ) (*v1bet
 		}(),
 	}
 
-	//return the resonse
+	//return the response
 	return admissionResponse, nil
 
 }

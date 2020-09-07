@@ -27,4 +27,4 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name  
-        imagePullPolicy: Always            
+        imagePullPolicy: Always

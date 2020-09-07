@@ -21,4 +21,4 @@ spec:
             namespaceName:
               type: string
             podLiveForThisMinutes:
-              type: integer    
+              type: integer

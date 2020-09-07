@@ -33,4 +33,4 @@ spec:
     JSONPath: .spec.podLiveForThisMinutes
   - name: Age
     type: date
-    JSONPath: .metadata.creationTimestamp  
+    JSONPath: .metadata.creationTimestamp

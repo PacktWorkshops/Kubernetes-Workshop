@@ -1,8 +1,8 @@
 # The Kubernetes Workshop
-[![GitHub issues](https://img.shields.io/github/issues/TrainingByPackt/Kubernetes-Workshop.svg)](https://github.com/TrainingByPackt/Kubernetes-Workshop/issues)
-[![GitHub forks](https://img.shields.io/github/forks/TrainingByPackt/Kubernetes-Workshop)](https://github.com/TrainingByPackt/Kubernetes-Workshop/network)
-[![GitHub stars](https://img.shields.io/github/stars/TrainingByPackt/Kubernetes-Workshop.svg)](https://github.com/TrainingByPackt/Kubernetes-Workshop/stargazers)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/TrainingByPackt/Kubernetes-Workshop/pulls)
+[![GitHub issues](https://img.shields.io/github/issues/PacktWorkshops/Kubernetes-Workshop.svg)](https://github.com/PacktWorkshops/Kubernetes-Workshop/issues)
+[![GitHub forks](https://img.shields.io/github/forks/PacktWorkshops/Kubernetes-Workshop)](https://github.com/PacktWorkshops/Kubernetes-Workshop/network)
+[![GitHub stars](https://img.shields.io/github/stars/PacktWorkshops/Kubernetes-Workshop.svg)](https://github.com/PacktWorkshops/Kubernetes-Workshop/stargazers)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/PacktWorkshops/Kubernetes-Workshop/pulls)
 
 This is the repository for [The Kubernetes Workshop](https://www.amazon.com/Kubernetes-Workshop-Interactive-Approach-Learning/dp/1838820752/ref=tmm_pap_swatch_0?_encoding=UTF8&qid=1611063544&sr=1-1&utm_source=github&utm_medium=repository&utm_campaign=9781838820756&utm_term=Kubernetes&utm_content=The%20Kubernetes%20Workshop), published by [Packt](https://www.packtpub.com/?utm_source=github). It contains all the supporting project files necessary to work through the course from start to finish.
 

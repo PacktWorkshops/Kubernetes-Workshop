@@ -7,7 +7,7 @@
 This is the repository for [The Kubernetes Workshop](https://www.amazon.com/Kubernetes-Workshop-Interactive-Approach-Learning/dp/1838820752/ref=tmm_pap_swatch_0?_encoding=UTF8&qid=1611063544&sr=1-1&utm_source=github&utm_medium=repository&utm_campaign=9781838820756&utm_term=Kubernetes&utm_content=The%20Kubernetes%20Workshop), published by [Packt](https://www.packtpub.com/?utm_source=github). It contains all the supporting project files necessary to work through the course from start to finish.
 
 ## Requirements and Setup
-<a href="https://www.amazon.com/Kubernetes-Workshop-Interactive-Approach-Learning/dp/1838820752/ref=tmm_pap_swatch_0?_encoding=UTF8&qid=1611063544&sr=1-1&utm_source=github&utm_medium=repository&utm_campaign=9781838820756&utm_term=Kubernetes&utm_content=The%20Kubernetes%20Workshop"><img src="https://github.com/PacktWorkshops/Workshop-Covers/blob/master/The%20Kubernetes%20Workshop.png" height="280px" width="230px" align="right" this.target="_blank"></a>
+<a href="https://www.amazon.com/Kubernetes-Workshop-Interactive-Approach-Learning/dp/1838820752/ref=tmm_pap_swatch_0?_encoding=UTF8&qid=1611063544&sr=1-1&utm_source=github&utm_medium=repository&utm_campaign=9781838820756&utm_term=Kubernetes&utm_content=The%20Kubernetes%20Workshop"><img src="https://github.com/PacktWorkshops/Workshop-Covers/blob/master/The%20Kubernetes%20Workshop.png" alt="The Kubernetes Workshop" height="280px" width="230px" align="right" this.target="_blank"></a>
 
 To get started with the project files, you'll need to:
 1. Install [AWS command line tool](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)

@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
       - name: k8s-pageview
-        image: packtworkshops/the-kubernetes-workshop:pageview
+        image: packtworkshops/the-kubernetes-workshop:pageview-v2
